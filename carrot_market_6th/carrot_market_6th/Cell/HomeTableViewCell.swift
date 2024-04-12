@@ -41,8 +41,9 @@ class HomeTableViewCell: UITableViewCell {
     }
     let horizontalStackView = UIStackView().then {
         $0.axis = .horizontal
-        $0.distribution = .fillEqually
-        $0.spacing = 8
+        $0.distribution = .fill
+        $0.alignment = .fill
+        $0.spacing = 5
     }
     let chatIcon = UIImageView().then {
         $0.image = UIImage(named: "chatIcon")
@@ -113,7 +114,7 @@ class HomeTableViewCell: UITableViewCell {
         
         horizontalStackView.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(10)
-            $0.width.equalTo(100)
+            $0.width.equalTo(80)
             $0.trailing.equalToSuperview().inset(10)
         }
     }

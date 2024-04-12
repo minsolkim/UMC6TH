@@ -26,6 +26,9 @@
 		582DB22D2BC4049A00600EA7 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582DB22C2BC4049A00600EA7 /* HomeCollectionViewCell.swift */; };
 		582DB2302BC53AFA00600EA7 /* ItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582DB22F2BC53AFA00600EA7 /* ItemList.swift */; };
 		582DB2322BC53F9900600EA7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582DB2312BC53F9900600EA7 /* Item.swift */; };
+		58522CB12BC8EC5C00510536 /* HorizItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58522CB02BC8EC5C00510536 /* HorizItem.swift */; };
+		58522CB32BC8ECA000510536 /* HorizItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58522CB22BC8ECA000510536 /* HorizItemList.swift */; };
+		58522CB52BC8F46B00510536 /* TotalItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58522CB42BC8F46B00510536 /* TotalItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		582DB22C2BC4049A00600EA7 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		582DB22F2BC53AFA00600EA7 /* ItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemList.swift; sourceTree = "<group>"; };
 		582DB2312BC53F9900600EA7 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		58522CB02BC8EC5C00510536 /* HorizItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizItem.swift; sourceTree = "<group>"; };
+		58522CB22BC8ECA000510536 /* HorizItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizItemList.swift; sourceTree = "<group>"; };
+		58522CB42BC8F46B00510536 /* TotalItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +189,9 @@
 			children = (
 				582DB22F2BC53AFA00600EA7 /* ItemList.swift */,
 				582DB2312BC53F9900600EA7 /* Item.swift */,
+				58522CB02BC8EC5C00510536 /* HorizItem.swift */,
+				58522CB22BC8ECA000510536 /* HorizItemList.swift */,
+				58522CB42BC8F46B00510536 /* TotalItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				582DB1E42BC27C8700600EA7 /* AppDelegate.swift in Sources */,
+				58522CB12BC8EC5C00510536 /* HorizItem.swift in Sources */,
 				582DB1E62BC27C8700600EA7 /* SceneDelegate.swift in Sources */,
 				582DB21B2BC27CEF00600EA7 /* FourthViewController.swift in Sources */,
 				582DB2302BC53AFA00600EA7 /* ItemList.swift in Sources */,
@@ -333,7 +343,9 @@
 				582DB2172BC27CD400600EA7 /* SecondViewController.swift in Sources */,
 				582DB2322BC53F9900600EA7 /* Item.swift in Sources */,
 				582DB22D2BC4049A00600EA7 /* HomeCollectionViewCell.swift in Sources */,
+				58522CB32BC8ECA000510536 /* HorizItemList.swift in Sources */,
 				582DB2272BC27F8A00600EA7 /* HomeTableViewCell.swift in Sources */,
+				58522CB52BC8F46B00510536 /* TotalItem.swift in Sources */,
 				582DB2192BC27CE000600EA7 /* ThirdViewController.swift in Sources */,
 				582DB2152BC27CC600600EA7 /* FirstViewController.swift in Sources */,
 				582DB22B2BC4042700600EA7 /* HomeTableViewCellTwo.swift in Sources */,

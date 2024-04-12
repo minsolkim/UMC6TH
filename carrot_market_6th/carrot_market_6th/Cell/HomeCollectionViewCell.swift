@@ -6,22 +6,24 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 class HomeCollectionViewCell: UICollectionViewCell {
     static let id = "HomeCollectionViewCell"
     
-    private let imageView = UIImageView().then {
+    let imageView = UIImageView().then {
         $0.layer.cornerRadius = 10
         $0.clipsToBounds = true
     }
     
-    private let titleLabel = UILabel().then {
+    let titleLabel = UILabel().then {
         $0.numberOfLines = 0
         $0.font = .systemFont(ofSize: 12)
     }
     
-    private let priceLabel = UILabel().then {
-        $0.font = UIFont.boldSystemFont(ofSize: 12)
+    let priceLabel = UILabel().then {
+        $0.font = UIFont.boldSystemFont(ofSize: 13)
     }
     
     override init(frame: CGRect) {
@@ -31,16 +33,18 @@ class HomeCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(priceLabel)
         
         imageView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(125)
+            $0.top.trailing.equalToSuperview()
+            $0.leading.equalToSuperview().inset(10)
+            $0.height.equalTo(110)
         }
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.bottom).offset(4)
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.equalTo(imageView)
+            
         }
         priceLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(4)
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.trailing.equalTo(titleLabel)
         }
         
     }

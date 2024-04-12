@@ -10,15 +10,17 @@ import SnapKit
 import Then
 
 class FirstViewController: UIViewController {
+    //MARK: -- Property
     let itemList = ItemList()
-    
+    let collectItemList = HorizItemList()
+    var totalItems: [TotalItem] = []
     private let tableView = UITableView().then {
         $0.allowsSelection = false
         $0.backgroundColor = .white
         $0.showsVerticalScrollIndicator = true
         $0.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         $0.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.id)
-        //$0.register(MyTableViewCellTwo.self, forCellReuseIdentifier: MyTableViewCellTwo.id)
+        $0.register(HomeTableViewCellTwo.self, forCellReuseIdentifier: HomeTableViewCellTwo.id)
     }
     
     private let floatingButton =  UIButton().then {
@@ -37,10 +39,12 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        totalItems = createTotalItems()
         setNavigationController()
         setTableView()
         addSubviews()
         setConfig()
+        
     }
     
     private func addSubviews() {
@@ -96,34 +100,71 @@ class FirstViewController: UIViewController {
         // 버튼이 눌렸을 때 수행할 동작을 여기에 추가합니다.
         print("Floating button tapped!")
     }
-    
+    func createTotalItems() -> [TotalItem] {
+        var totalItems: [TotalItem] = []
+        
+        for item in itemList.items.prefix(3) {
+            totalItems.append(.item(item))
+        }
+        
+        if let firstHorizItem = collectItemList.items.first {
+            totalItems.append(.horizItem(firstHorizItem))
+        }
+        
+        for item in itemList.items.dropFirst(3) {
+            totalItems.append(.item(item))
+        }
+        return totalItems
+    }
     
 }
 
 extension FirstViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemList.items.count
+        return totalItems.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-        
+        let currentItem = totalItems[indexPath.row]
+        switch currentItem {
+        case .item(_):
+            return UITableView.automaticDimension
+        case .horizItem(_):
+            return HomeTableViewCellTwo.cellHeight
+        }
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.id, for: indexPath) as! HomeTableViewCell
-        
-        let item = itemList.items[indexPath.row]
-        
-        cell.titleLabel.text = item.title
-        cell.descriptionLabel.text = item.description
-        cell.priceLabel.text = item.price
-        cell.dateLabel.text = item.date
-        cell.chatNumberLabel.text = item.chatNumber
-        cell.heartNumberLabel.text = item.heartNumber
-        cell.thumbnailImageView.image = item.image
-        
-        return cell
+        switch totalItems[indexPath.row] {
+        case let .item(item):
+            let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.id, for: indexPath) as! HomeTableViewCell
+            
+            cell.titleLabel.text = item.title
+            cell.descriptionLabel.text = item.description
+            cell.priceLabel.text = item.price
+            cell.dateLabel.text = item.date
+            cell.chatNumberLabel.text = item.chatNumber
+            cell.heartNumberLabel.text = item.heartNumber
+            // 채팅 아이콘과 하트 아이콘 설정
+            if indexPath.row != 0 {
+                cell.chatIcon.image = item.chatIcon
+                cell.heartIcon.image = item.heartIcon
+            } else {
+                cell.chatIcon.image = nil
+                cell.heartIcon.image = nil
+            }
+            
+            cell.thumbnailImageView.image = item.image
+            
+            return cell
+        case .horizItem(_):
+            let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCellTwo.id, for: indexPath) as! HomeTableViewCellTwo
+            cell.itemList = collectItemList // collectItemList를 설정
+            
+            return cell
+        }
     }
+    
     
     //MARK: -- Action
     @objc func button1Tapped() {
